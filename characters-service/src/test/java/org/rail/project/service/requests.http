@@ -1,0 +1,11 @@
+GET http://localhost:8080/api/characters
+Accept: application/json
+
+###
+GET http://localhost:8080/api/characters/random
+Accept: application/json
+
+###
+GET http://localhost:8080/api/characters/character/2
+Accept: application/json
+
