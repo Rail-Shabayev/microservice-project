@@ -49,14 +49,23 @@ public class CharacterServiceTest {
     @Test
     @DisplayName("Should map given character to characterDto")
     void shouldMapCharacterToDto() {
-
+        CharacterService characterService = new CharacterService(characterRepository);
+        Character character = new Character(1L, "Isaac", new BigDecimal("3.50"), 6,
+                new BigDecimal("1.0"), new BigDecimal(0));
+        CharacterDto expectedCharacterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
+                new BigDecimal("1.0"), new BigDecimal(0));
+        CharacterDto actualCharacterDto = characterService.mapToDto(character);
+        assertThat(characterService.mapToDto(character).getName()).isEqualTo(actualCharacterDto.getName());
+        assertThat(characterService.mapToDto(character).getHealth()).isEqualTo(actualCharacterDto.getHealth());
     }
 
     @Test
     void getRandomCharacter() {
+
     }
 
     @Test
     void getCharacter() {
+
     }
 }
