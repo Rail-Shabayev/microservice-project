@@ -39,7 +39,8 @@ public class CharacterService {
         List<CharacterDto> characterDtos = characterRepository.findAll().stream()
                 .map(this::mapToDto)
                 .toList();
-        return characterDtos.get(rand.nextInt(characterDtos.size()));
+        int randomNumber = rand.nextInt(characterDtos.size());
+        return characterDtos.get(randomNumber);
     }
 
     @Transactional(readOnly = true)
