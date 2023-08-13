@@ -22,7 +22,7 @@ public class CharacterServiceTest {
     CharacterService characterService;
     Character character;
     CharacterDto characterDto;
-    Character character2;
+    Character character1;
     CharacterDto characterDto1;
 
     @BeforeEach
@@ -32,7 +32,7 @@ public class CharacterServiceTest {
                 new BigDecimal("1.0"), new BigDecimal(0));
         characterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
                 new BigDecimal("1.0"), new BigDecimal(0));
-        character2 = new Character(2L, "Magdalene", new BigDecimal("3.50"), 8,
+        character1 = new Character(2L, "Magdalene", new BigDecimal("3.50"), 8,
                 new BigDecimal("0.85"), new BigDecimal(0));
         characterDto1 = new CharacterDto("Magdalene", new BigDecimal("3.50"), 8,
                 new BigDecimal("0.85"), new BigDecimal(0));
@@ -44,7 +44,7 @@ public class CharacterServiceTest {
     @Test
     @DisplayName("Should return all characters")
     void shouldReturnAllCharacters() {
-        List<Character> characterList = List.of(character, character2);
+        List<Character> characterList = List.of(character, character1);
         List<CharacterDto> expectedCharacterList = List.of(characterDto, characterDto1);
         when(characterRepository.findAll()).thenReturn(characterList);
         List<CharacterDto> listOfCharacterDtos = characterService.getAllCharacters();
@@ -63,16 +63,17 @@ public class CharacterServiceTest {
     @Test
     @DisplayName("Should return a random character")
     void shouldReturnRandomCharacter() {
-        when(characterRepository.findAll()).thenReturn(List.of(character, character2));
+        List<Character> characterList = List.of(character, character1);
+        List<CharacterDto> characterDtos = List.of(characterDto, characterDto1);
+        when(characterRepository.findAll()).thenReturn(characterList);
         CharacterDto actualCharacter = characterService.getRandomCharacter();
-        assertThat(characterDto.getName()).isEqualTo(actualCharacter.getName());
-        assertThat(characterDto.getSpeed()).isEqualTo(actualCharacter.getSpeed());
+        assertThat(actualCharacter).isIn(characterDtos);
     }
 
     @Test
     @DisplayName("Should return a character")
     void shouldReturnCharacter() throws Exception {
-        when(characterRepository.findAll()).thenReturn(List.of(character, character2));
+        when(characterRepository.findAll()).thenReturn(List.of(character, character1));
         CharacterDto actualCharacter = characterService.getCharacter(1L);
         assertThat(characterService.getCharacter(1L).getName()).isEqualTo(actualCharacter.getName());
         assertThat(characterService.getCharacter(1L).getHealth()).isEqualTo(actualCharacter.getHealth());
