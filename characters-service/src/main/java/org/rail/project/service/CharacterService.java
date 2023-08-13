@@ -51,5 +51,4 @@ public class CharacterService {
                 .map(this::mapToDto)
                 .orElseThrow(() -> new Exception("No character with that name!"));
     }
-
 }
