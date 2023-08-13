@@ -24,6 +24,7 @@ public class CharacterServiceTest {
     CharacterDto characterDto;
     Character character2;
     CharacterDto characterDto1;
+
     @BeforeEach
     void setUp() {
         characterService = new CharacterService(characterRepository);
@@ -34,8 +35,9 @@ public class CharacterServiceTest {
         character2 = new Character(2L, "Magdalene", new BigDecimal("3.50"), 8,
                 new BigDecimal("0.85"), new BigDecimal(0));
         characterDto1 = new CharacterDto("Magdalene", new BigDecimal("3.50"), 8,
-               new BigDecimal("0.85"), new BigDecimal(0));
+                new BigDecimal("0.85"), new BigDecimal(0));
     }
+
     @Mock
     private CharacterRepository characterRepository;
 
@@ -44,14 +46,10 @@ public class CharacterServiceTest {
     void shouldReturnAllCharacters() {
         List<Character> characterList = List.of(character, character2);
         List<CharacterDto> expectedCharacterList = List.of(characterDto, characterDto1);
-
         when(characterRepository.findAll()).thenReturn(characterList);
-
         List<CharacterDto> listOfCharacterDtos = characterService.getAllCharacters();
-
         assertThat(listOfCharacterDtos.get(1).getName()).isEqualTo(expectedCharacterList.get(1).getName());
         assertThat(listOfCharacterDtos.get(1).getHealth()).isEqualTo(expectedCharacterList.get(1).getHealth());
-
     }
 
     @Test
@@ -72,7 +70,11 @@ public class CharacterServiceTest {
     }
 
     @Test
-    void getCharacter() {
-
+    @DisplayName("Should return a character")
+    void shouldReturnCharacter() throws Exception {
+        when(characterRepository.findAll()).thenReturn(List.of(character, character2));
+        CharacterDto actualCharacter = characterService.getCharacter(1L);
+        assertThat(characterService.getCharacter(1L).getName()).isEqualTo(actualCharacter.getName());
+        assertThat(characterService.getCharacter(1L).getHealth()).isEqualTo(actualCharacter.getHealth());
     }
 }
