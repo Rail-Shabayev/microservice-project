@@ -1,7 +1,7 @@
 spring:
   application.name: characters-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/characters
     username: postgres
     password: password
   jpa:
