@@ -9,3 +9,16 @@ Accept: application/json
 GET http://localhost:8080/api/characters/character/2
 Accept: application/json
 
+###
+POST http://localhost:8081/api/maker
+Content-Type: application/json
+
+{
+  "name": "Judas",
+  "damage": 4.72,
+  "health": 2,
+  "speed": 1.00,
+  "luck": 0.00
+}
+
+
