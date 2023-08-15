@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     password: password
@@ -7,3 +8,4 @@ spring:
     show-sql: true
     hibernate.ddl-auto: create-drop
   application.name: character-maker-service
+server.port: 8081
