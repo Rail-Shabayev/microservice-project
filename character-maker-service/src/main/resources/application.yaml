@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    password: password
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/characters
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: create-drop
+  application.name: character-maker-service
