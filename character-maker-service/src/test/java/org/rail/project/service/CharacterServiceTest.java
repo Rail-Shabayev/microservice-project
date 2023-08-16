@@ -8,6 +8,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.rail.project.dto.CharacterDto;
 import org.rail.project.model.Character;
 import org.rail.project.repository.CharacterRepository;
 
@@ -47,7 +48,13 @@ public class CharacterServiceTest {
     }
 
     @Test
-    void mapToModel() {
-
+    @DisplayName("Should map a CharacterDto object to a Character")
+    void shouldMapToModel() {
+        Character actualCharacter = new Character(1L, "Isaac", new BigDecimal("3.50"), 6,
+                new BigDecimal("1.0"), new BigDecimal(0));
+        CharacterDto characterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
+                new BigDecimal("1.0"), new BigDecimal(0));
+        assertThat(CharacterService.mapToModel(characterDto).getName()).isEqualTo(actualCharacter.getName());
+        assertThat(CharacterService.mapToModel(characterDto).getDamage()).isEqualTo(actualCharacter.getDamage());
     }
 }
