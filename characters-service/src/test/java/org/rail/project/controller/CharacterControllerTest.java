@@ -51,7 +51,8 @@ public class CharacterControllerTest {
 
 
     @Test
-    @DisplayName("Should get a random Character object")
+    @DisplayName("Should get a random Character object " +
+            "when making a get request to /api/characters/random endpoint")
     void shouldGetRandomCharacter() throws Exception {
         CharacterDto characterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
                 new BigDecimal("1.0"), new BigDecimal(0));
@@ -68,7 +69,8 @@ public class CharacterControllerTest {
     }
 
     @Test
-    @DisplayName("Should return the character by id")
+    @DisplayName("Should return the character by id " +
+            "when making a get request to the /api/characters/character/{id} endpoint")
     void shouldReturnCharacter() throws Exception {
         CharacterDto characterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
                 new BigDecimal("1.0"), new BigDecimal(0));
