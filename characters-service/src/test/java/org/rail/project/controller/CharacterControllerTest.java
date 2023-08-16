@@ -68,6 +68,19 @@ public class CharacterControllerTest {
     }
 
     @Test
-    void getCharacter() {
+    @DisplayName("Should return the character by id")
+    void shouldReturnCharacter() throws Exception {
+        CharacterDto characterDto = new CharacterDto("Isaac", new BigDecimal("3.50"), 6,
+                new BigDecimal("1.0"), new BigDecimal(0));
+        when(characterService.getCharacter(1L)).thenReturn(characterDto);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/characters/character/{id}", "1")
+                        .contentType(APPLICATION_JSON_VALUE)
+                        .accept(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.name", is("Isaac")))
+                .andExpect(jsonPath("$.health", is(6)))
+                .andExpect(jsonPath("$.speed", is(1.0)));
     }
 }
