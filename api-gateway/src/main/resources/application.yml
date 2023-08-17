@@ -11,4 +11,3 @@ spring.cloud.gateway:
     id: characters-service
     uri: http://characters-service
     predicates[0]: Path=/api/characters
-server.port: 0

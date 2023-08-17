@@ -7,7 +7,7 @@ spring:
     show-sql: true
     hibernate.ddl-auto: create-drop
   application.name: character-maker-service
-server.port: 8081
 eureka:
   client.serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+server.port: 0
