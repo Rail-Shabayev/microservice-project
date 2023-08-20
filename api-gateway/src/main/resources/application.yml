@@ -19,3 +19,4 @@ spring.cloud.gateway:
     id: characters-service
     uri: lb://characters-service
     predicates: Path=/api/characters/character/{id}
+spring.security.oauth2.resource-server.jwt.issuer-uri: http://localhost:8181/auth/realms/spring-project-mecroservices
