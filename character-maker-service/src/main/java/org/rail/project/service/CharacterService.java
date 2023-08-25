@@ -24,7 +24,7 @@ public class CharacterService {
     private final WebClient.Builder webClientBuilder;
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public void saveCharacter(CharacterDto characterDto) throws JsonProcessingException {
+    public String saveCharacter(CharacterDto characterDto) throws JsonProcessingException {
         String existingCharacters = Objects.requireNonNull(webClientBuilder.build()
                 .get()
                 .uri("http://characters-service/api/characters")
@@ -37,9 +37,10 @@ public class CharacterService {
         if (characterDtos.stream()
                 .map(CharacterDto::getName)
                 .anyMatch(s -> s.equals(characterDto.getName())))
-            throw new RuntimeException("A character with that name is already exists");
+            return "A character with that name is already exists";
         else
             characterRepository.save(mapToModel(characterDto));
+        return "Character is saved!";
     }
 
     public static Character mapToModel(CharacterDto characterDto) {

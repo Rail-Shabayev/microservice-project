@@ -19,11 +19,11 @@ public class CharacterController {
     @PostMapping
     @ResponseStatus(CREATED)
     @CircuitBreaker(name="characters", fallbackMethod = "fallbackMethod")
-    public void postCharacter(@RequestBody CharacterDto characterDto) throws JsonProcessingException {
-        characterService.saveCharacter(characterDto);
+    public String postCharacter(@RequestBody CharacterDto characterDto) throws JsonProcessingException {
+        return characterService.saveCharacter(characterDto);
     }
     @SuppressWarnings("unused")
-    public void  fallbackMethod(CharacterDto CharacterDto, RuntimeException RuntimeException) {
-        System.out.println("Characters service is not responding. Please try again or wait for 1 hour!");
+    public String fallbackMethod(CharacterDto CharacterDto, RuntimeException RuntimeException) {
+        return "Characters service is not responding. Please try again or wait for 1 hour!";
     }
 }
