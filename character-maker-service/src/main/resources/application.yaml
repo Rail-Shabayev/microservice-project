@@ -11,3 +11,15 @@ eureka:
   client.serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server.port: 0
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventory:
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 3
+        permitted-number-of-calls-in-half-open-state: 3
+        failure-rate-threshold: 50
+        sliding-window-size: 5
+        sliding-window-type: COUNT_BASED
+        event-consumer-buffer-size: 10
+        register-health-indicator: true
